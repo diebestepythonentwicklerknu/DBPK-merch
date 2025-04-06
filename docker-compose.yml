@@ -1,0 +1,27 @@
+# basic docker-compose file, should be updated when project will be done
+
+version: '3.8'
+
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongo
+    environment:
+      # Add any environment variables your Django app needs
+      - DJANGO_SETTINGS_MODULE=myproject.settings
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:

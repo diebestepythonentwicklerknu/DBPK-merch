@@ -7,6 +7,7 @@ from store import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('inventory.urls')),
+    path('', include('inventory.urls')),
 ]
 
 if settings.DEBUG:

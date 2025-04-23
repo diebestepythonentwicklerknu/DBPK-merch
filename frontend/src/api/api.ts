@@ -1,0 +1,1 @@
+export const PRODUCTS = 'http://localhost:8000/api/items/';

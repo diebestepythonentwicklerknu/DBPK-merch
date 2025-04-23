@@ -2,6 +2,8 @@ from pathlib import Path
 
 from decouple import config
 
+from pymongo import MongoClient
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config('SECRET_KEY')
@@ -16,7 +18,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'drf_yasg',
     'inventory.apps.InventoryConfig',
+    'main',
 ]
 
 MIDDLEWARE = [
@@ -49,13 +53,21 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'store.wsgi.application'
 
+# MongoDB configuration
+MONGO_URI = config('MONGO_URI', default='mongodb://localhost:27017/store')
+MONGO_DB_NAME = 'store'
+
+# Database configuration
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.dummy'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
-MONGO_URI = config('MONGO_URI', default='mongodb://localhost:27017/store')
+# MongoDB client configuration
+mongo_client = MongoClient(MONGO_URI)
+mongo_db = mongo_client[MONGO_DB_NAME]
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -84,7 +96,21 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
     ],
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
 }
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+# Swagger settings
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+        }
+    },
+    'USE_SESSION_AUTH': False,
+    'JSON_EDITOR': True,
+}

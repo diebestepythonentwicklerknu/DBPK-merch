@@ -1,18 +1,18 @@
 export interface Product {
-    id: string,
-    name: string,
-    size: string,
-    quantity: number,
-    price: number,
-    photos: string[],
+    id: string
+    name: string
+    size: string
+    quantity: number
+    price: number
+    photos: string[]
 }
 
 export type UpdatedProduct = {
-    name?: string,
-    size?: string,
-    quantity?: number,
-    price?: number,
-    photos?: string[],
+    name?: string
+    size?: string
+    quantity?: number
+    price?: number
+    photos?: string[]
 }
 
 export interface ProductCart extends Product {

@@ -6,7 +6,8 @@ export const useStore = () => {
 
     useEffect(() => {
         getProducts()
-        .then(data => setProducts(data));
+        .then((response) => 
+            setProducts(response));
     }, []);
 
     return {

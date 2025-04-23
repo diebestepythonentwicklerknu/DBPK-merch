@@ -15,6 +15,7 @@ export const Header = () => {
           </NavLink>
           <NavLink to="store">Catalog</NavLink>
           <NavLink to="cart">Cart</NavLink>
+          <NavLink to="orders">Orders</NavLink>
         </ul>
       </nav>
     </header>

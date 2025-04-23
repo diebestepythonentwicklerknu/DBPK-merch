@@ -1,4 +1,4 @@
-export type Product = {
+export interface Product {
     id: string,
     name: string,
     size: string,
@@ -13,4 +13,8 @@ export type UpdatedProduct = {
     quantity?: number,
     price?: number,
     photos?: string[],
+}
+
+export interface ProductCart extends Product {
+    currentQuantity: number
 }

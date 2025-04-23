@@ -15,6 +15,7 @@ export const updateProductById = (
         body: JSON.stringify(updatedProduct),
     }).then((response) => response.json())
 }
+
 export const deleteProductById = (productId: string) => {
     return fetch(`${PRODUCTS}${productId}`, { method: 'DELETE' }).then(
         (response) => response.json()

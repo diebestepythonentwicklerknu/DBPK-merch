@@ -27,8 +27,7 @@ def mock_mongo(monkeypatch):
     mock_db.items = mock_items
     mock_db.orders = mock_orders
 
-    monkeypatch.setattr("inventory.models.MongoClient", MagicMock(return_value=mock_client))
-    monkeypatch.setattr("inventory.models.db", mock_db)
+    monkeypatch.setattr("inventory.db.MongoClient", MagicMock(return_value=mock_client))
     monkeypatch.setattr("inventory.models.items_collection", mock_items)
     monkeypatch.setattr("inventory.models.orders_collection", mock_orders)
 

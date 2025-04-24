@@ -4,18 +4,18 @@ version: '3.8'
 
 services:
   web:
-    build: .
-    command: >
-      sh -c "python manage.py migrate &&
-             python manage.py runserver 0.0.0.0:8000"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command:
+      - python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/app
       - media_volume:/app/media
     ports:
       - "8000:8000"
     depends_on:
-      mongo:
-        condition: service_healthy
+      - mongo
     env_file:
       - .env
     environment:
@@ -23,13 +23,6 @@ services:
       - DEBUG=TRUE
       - MONGO_URI=mongodb+srv://sinchuk_taras:sinchuk_password@dbpk-merch.gffoef9.mongodb.net/store?retryWrites=true&w=majority&appName=DBPK-Merch
       - DJANGO_SETTINGS_MODULE=store.settings
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
-
 
   mongo:
     image: mongo:latest
@@ -37,12 +30,6 @@ services:
       - "27017:27017"
     volumes:
       - mongo-data:/data/db
-    healthcheck:
-      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
-      interval: 10s
-      timeout: 10s
-      retries: 5
-      start_period: 40s
 
 volumes:
   mongo-data:

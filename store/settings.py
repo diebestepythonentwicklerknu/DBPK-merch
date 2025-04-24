@@ -57,7 +57,7 @@ WSGI_APPLICATION = 'store.wsgi.application'
 MONGO_URI = config('MONGO_URI', default='mongodb://localhost:27017/store')
 MONGO_DB_NAME = 'store'
 
-# Database configuration
+# Database configuration (local only for now)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',

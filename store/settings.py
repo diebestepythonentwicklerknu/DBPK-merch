@@ -1,15 +1,19 @@
 from pathlib import Path
-
-from decouple import config
-
+from decouple import config, Csv
 from pymongo import MongoClient
 
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config('SECRET_KEY')
+
+# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*']
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = config('CORS_ALLOWED_ORIGINS', cast=Csv(), default=[])
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -21,6 +25,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     'inventory.apps.InventoryConfig',
     'main',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -31,6 +36,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'store.urls'
@@ -53,22 +59,26 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'store.wsgi.application'
 
-# MongoDB configuration
-MONGO_URI = config('MONGO_URI', default='mongodb://localhost:27017/store')
-MONGO_DB_NAME = 'store'
+# Database
+# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+MONGO_URI = config('MONGO_URI', default='mongodb+srv://sinchuk_taras:sinchuk_password@dbpk-merch.gffoef9.mongodb.net/store?retryWrites=true&w=majority&appName=DBPK-Merch')
 
-# Database configuration (local only for now)
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.dummy'
+    },
+    'mongodb': {
+        'ENGINE': 'djongo',
+        'NAME': 'merch_shop',
+        'CLIENT': {
+            'host': MONGO_URI,
+        }
     }
 }
 
-# MongoDB client configuration
-mongo_client = MongoClient(MONGO_URI)
-mongo_db = mongo_client[MONGO_DB_NAME]
 
+# Password validation
+# https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -84,14 +94,19 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Internationalization
+# https://docs.djangoproject.com/en/4.2/topics/i18n/
 LANGUAGE_CODE = 'uk-ua'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/4.2/howto/static-files/
 STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# REST Framework settings
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
@@ -99,6 +114,7 @@ REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
 }
 
+# Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 

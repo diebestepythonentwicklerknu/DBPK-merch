@@ -39,3 +39,5 @@ rope==1.13.0
 setuptools==75.8.0
 six==1.16.0
 sqlparse>=0.3.1
+django-cors-headers==3.14.0
+python-decouple==3.8

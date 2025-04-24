@@ -1,15 +1,7 @@
 import datetime
-
+from .db import items_collection, orders_collection
 from decouple import config
-from pymongo import MongoClient
-
-# Connect to MongoDB
-client = MongoClient(config('MONGO_URI', default='mongodb://localhost:27017/store'))
-db = client.get_database()
-
-# Collections
-items_collection = db.items
-orders_collection = db.orders
+from bson.objectid import ObjectId
 
 
 def create_item(name, size, quantity, price, photos=None):

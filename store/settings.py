@@ -1,7 +1,6 @@
 from pathlib import Path
-from decouple import config
-import pymongo
-from upstash_redis import Redis
+
+from decouple import config, Csv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -12,8 +11,8 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*']
-
-# Application definition
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = config('CORS_ALLOWED_ORIGINS', cast=Csv(), default=[])
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -23,6 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'inventory.apps.InventoryConfig',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -33,6 +33,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'store.urls'
@@ -57,7 +58,7 @@ WSGI_APPLICATION = 'store.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-MONGO_URI = config('MONGO_URI', default='mongodb://localhost:27017/store')
+MONGO_URI = config('MONGO_URI', default='mongodb+srv://sinchuk_taras:sinchuk_password@dbpk-merch.gffoef9.mongodb.net/store?retryWrites=true&w=majority&appName=DBPK-Merch')
 
 DATABASES = {
     'default': {
@@ -72,10 +73,6 @@ DATABASES = {
     }
 }
 
-# Vercel KV Configuration
-VERCEL_KV_URL = config('VERCEL_KV_URL', default='')
-VERCEL_KV_TOKEN = config('VERCEL_KV_TOKEN', default='')
-VERCEL_KV = Redis(url=VERCEL_KV_URL, token=VERCEL_KV_TOKEN) if VERCEL_KV_URL and VERCEL_KV_TOKEN else None
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -116,7 +113,3 @@ REST_FRAMEWORK = {
 # Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
-
-# Session configuration
-SESSION_ENGINE = 'django.contrib.sessions.backends.db'
-SESSION_COOKIE_AGE = 86400  # 24 hours in seconds

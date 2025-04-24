@@ -1,5 +1,4 @@
-"""
-Prev. version:
+
 
 # inventory/urls.py
 from django.urls import path
@@ -57,3 +56,5 @@ urlpatterns = [
     # If you need to keep the old URL pattern for backward compatibility:
     path('items/', views.ProductViewSet.as_view({'get': 'list'}), name='get_items'),
 ]
+
+"""

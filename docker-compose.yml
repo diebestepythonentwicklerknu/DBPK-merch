@@ -8,15 +8,14 @@ services:
       - media_volume:/app/media
     ports:
       - "8000:8000"
-    depends_on:
-      - mongo
     env_file:
       - .env
     environment:
       - SECRET_KEY=d-k1n((!vuupr&2m^8-m6wjr4a&g77xp=@gvr7x5(z4@95b%z6
       - DEBUG=TRUE
-      - MONGO_URI=mongodb://mongo:27017/store
+      - MONGO_URI=mongodb+srv://sinchuk_taras:your_password@dbpk-merch.gffoef9.mongodb.net/store?retryWrites=true&w=majority&appName=DBPK-Merch
       - DJANGO_SETTINGS_MODULE=store.settings
+
 
   mongo:
     image: mongo:latest

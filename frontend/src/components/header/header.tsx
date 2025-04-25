@@ -1,21 +1,22 @@
 import { NavLink } from "react-router-dom";
+import './header.scss';
 
 export const Header = () => {
   return (
-    <header>
-      <nav>
-        <ul className="">
+    <header className="header">
+      <nav className="header__nav nav">
+        <ul className="nav__list">
           <NavLink to="/" className="logo">
-            <img src="" alt="logo" />
+            DBPK
           </NavLink>
         </ul>
-        <ul>
-          <NavLink to="/" className="logo">
+        <ul className="nav__list">
+          <NavLink to="/" className="nav__link">
             Home
           </NavLink>
-          <NavLink to="store">Catalog</NavLink>
-          <NavLink to="cart">Cart</NavLink>
-          <NavLink to="orders">Orders</NavLink>
+          <NavLink to="store" className="nav__link">Catalog</NavLink>
+          <NavLink to="cart" className="nav__link">Cart</NavLink>
+          <NavLink to="orders" className="nav__link">Orders</NavLink>
         </ul>
       </nav>
     </header>

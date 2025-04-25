@@ -1,0 +1,36 @@
+@use '../../styles/variables.scss' as variables;
+
+.header {
+    width: 100%;
+    padding: variables.$gap 0;
+
+    &__nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+.nav {
+    &__list {
+        display: flex;
+        gap: variables.$gap--large;
+    }
+
+    &__link {
+        color: variables.$secondary;
+        font-size: variables.$text-size;
+        text-decoration: none;
+
+        &:hover {
+            color: variables.$primary;
+        }
+    }
+}
+
+.logo {
+    font-size: variables.$logo-size;
+    font-weight: variables.$logo-weight;
+    color: variables.$primary;
+    text-decoration: none;
+}

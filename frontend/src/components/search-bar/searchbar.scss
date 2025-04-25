@@ -1,0 +1,11 @@
+@use '../../styles/variables.scss' as variables;
+
+.search-bar {
+    border: none;
+    border-radius: variables.$gap--large;
+    max-width: 320px;
+    background-color: variables.$bg-secondary;
+    font-family: 'Poppins', sans-serif;
+    color: variables.$primary;
+    padding: variables.$gap;
+}

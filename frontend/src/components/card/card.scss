@@ -1,0 +1,46 @@
+@use '../../styles/variables.scss' as variables;
+
+.card {
+    background-color: variables.$bg-secondary;
+    border-radius: variables.$gap;
+    min-width: 320px;
+    box-sizing: border-box;
+    padding: variables.$gap;
+    display: flex;
+    flex-direction: column;
+    gap: variables.$gap;
+
+    &__image {
+        max-width: 100%;
+        border-radius: variables.$gap;
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        gap: variables.$gap--small;
+        color: variables.$secondary;
+
+        & > * {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        & .value {
+            color: variables.$primary;
+        }
+        .value--price {
+            font-size: variables.$price-size;
+            font-weight: variables.$button-weight;
+        }
+    }
+
+    &__price {
+        margin-bottom: variables.$gap;
+    }
+
+    &__title {
+        color: variables.$primary;
+    }
+}

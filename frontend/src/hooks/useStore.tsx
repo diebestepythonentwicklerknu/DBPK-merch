@@ -11,5 +11,9 @@ export const useStore = () => {
     return {
         products,
         setProducts,
+        setQuery,
+        setSize,
+        setPrice,
+        filteredProducts,
     }
 }

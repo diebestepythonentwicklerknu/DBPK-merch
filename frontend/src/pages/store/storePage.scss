@@ -1,0 +1,15 @@
+@use '../../styles/variables.scss' as variables;
+
+.store-page {
+    &__banner {
+
+    }
+
+    &__catalog {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: variables.$gap;
+        justify-items: center;
+        align-content: center;
+    }
+}

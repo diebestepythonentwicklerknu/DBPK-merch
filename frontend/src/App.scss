@@ -1,63 +1,191 @@
 @use './styles/variables.scss' as variables;
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-html {
+* {
     font-family: 'Poppins', sans-serif;
+    font-size: variables.$text-size;
 }
 
 body {
     margin: 0;
     padding: 0;
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     background-color: variables.$primary;
+    overflow: hidden;
 }
 
-a, p, h1, h2, h3, h4 {
+a,
+p,
+h1,
+h2,
+h3,
+h4 {
     margin: 0;
 }
 
-ul, ol, li {
+img {
+    display: block;
+}
+
+ul,
+ol,
+li {
     list-style: none;
     padding: 0;
 }
 
+input,
+select {
+    border: none;
+    border-radius: variables.$gap--large;
+    width: 320px;
+    background-color: variables.$bg-secondary;
+    font-family: 'Poppins', sans-serif;
+    color: variables.$primary;
+    padding: variables.$gap variables.$gap--mid;
+    font-size: variables.$text-size;
+
+    &:focus {
+        border: none;
+        outline: none;
+    }
+}
+
 #root {
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
 }
 
 .wrapper {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    height: 100vh;
     position: relative;
     box-sizing: border-box;
     padding: variables.$gap;
+    overflow: hidden;
+
+    @media (max-width: 900px) {
+        padding: variables.$gap--small;
+    }
 
     &__container {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        display: flex;
+        flex-direction: column;
         flex: 1;
         background-color: variables.$bg;
         border-radius: variables.$gap;
+        overflow-y: scroll;
+        position: relative;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+}
+
+.page {
+    &__container {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
         padding: 0 variables.$gap--large;
+
+        @media (max-width: 1200px) {
+            padding: 0 variables.$gap--mid;
+        }
+
+        @media (max-width: 900px) {
+            padding: 0 variables.$gap;
+        }
     }
 }
 
 main {
+    display: flex;
+    flex-direction: column;
     flex: 1;
 }
 
 .button {
+    color: variables.$bg;
     text-transform: uppercase;
-    padding: variables.$gap;
+    padding: variables.$gap variables.$gap--large;
     background-color: variables.$primary;
     font-weight: variables.$button-weight;
     border-radius: variables.$gap--large;
     box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: variables.$gap--mid;
+    transition: variables.$animation;
+    border: 2px solid transparent;
+
+    &:disabled {
+        opacity: 0.5;
+
+        &:hover {
+            color: variables.$bg;
+            background-color: variables.$primary;
+            border: 2px solid transparent;
+        }
+    }
+
+    &__icon {
+        transition: variables.$animation;
+    }
 
     &:hover {
+        transform: scale(1.05);
+    }
+
+    &:hover,
+    &--in-cart {
         background-color: transparent;
         color: variables.$primary;
         border: 2px solid variables.$primary;
+
+        & .button__icon {
+            filter: invert(1);
+        }
+    }
+
+    &--in-cart:hover {
+        color: variables.$bg;
+        background-color: variables.$primary;
+    }
+}
+
+h1,
+h2,
+h3,
+h4 {
+    color: variables.$primary;
+}
+
+h1 {
+    font-size: variables.$headline-size;
+    font-weight: variables.$logo-weight;
+}
+
+.banner {
+    height: 320px;
+    background-color: variables.$bg--darker;
+    border-radius: variables.$gap--mid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    &__text {
+        color: variables.$secondary;
+    }
+
+    &__logo {
+        width: 50px;
     }
 }

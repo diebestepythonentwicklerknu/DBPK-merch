@@ -1,0 +1,205 @@
+@use '../../styles/variables.scss' as variables;
+
+.landing {
+    position: relative;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    flex: 1;
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        z-index: 3;
+        flex: 1;
+        gap: variables.$gap--large;
+    }
+
+    &__subtitle {
+        color: variables.$accent;
+        font-weight: variables.$subtitle-weight;
+    }
+
+    &__slogan {
+        display: flex;
+        flex-direction: column;
+        line-height: 230px;
+        font-weight: 900;
+        font-size: variables.$slogan-size;
+
+        & .outline {
+            font-size: variables.$slogan-size;
+            color: variables.$bg;
+            text-shadow:
+                2px 2px 0px variables.$primary,
+                -2px -2px 0px variables.$primary,
+                2px -2px 0px variables.$primary,
+                -2px 2px 0px variables.$primary;
+        }
+
+        & .big {
+            font-size: variables.$slogan-size--big;
+        }
+    }
+
+    &__text {
+        color: variables.$secondary;
+        font-weight: 300;
+        max-width: 550px;
+    }
+
+    .button {
+        width: fit-content;
+    }
+
+    &__discount {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        z-index: 2;
+    }
+
+    &__star-group {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        position: relative;
+    }
+
+    &__discount-text {
+        position: absolute;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: variables.$primary;
+        font-weight: variables.$logo-weight;
+        font-size: variables.$headline-size;
+        transform: rotate(-30deg);
+    }
+
+    .star {
+        animation: rotation 10s linear infinite forwards;
+    }
+
+    .star--outline {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateY(-50%) translateX(-50%);
+        animation: rotation--outlined 5s linear infinite backwards;
+    }
+
+    &__graphics {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: variables.$gap--mid;
+    }
+
+    &__spark {
+        position: absolute;
+        z-index: 3;
+    }
+
+    .spark--1 {
+        top: 10%;
+        left: 20%;
+        animation: rotation 15s linear infinite forwards;
+    }
+
+    .spark--2 {
+        top: 15%;
+        left: 25%;
+        animation: rotation 20s linear infinite forwards;
+    }
+
+    &__man {
+        position: relative;
+        z-index: 1;
+        transition: all 0.3s ease-in-out;
+        &-image {
+            max-width: 1000px;
+            animation: floating 2s ease-in-out infinite alternate;
+        }
+
+        &:hover {
+            transform: scale(1.02);
+        }
+    }
+    .page__container {
+        flex-direction: row;
+    }
+
+    &__block {
+        display: flex;
+        align-items: end;
+        justify-content: end;
+        color: variables.$bg--transparent;
+        position: absolute;
+        text-align: right;
+        box-sizing: border-box;
+        padding: variables.$gap;
+        height: 80%;
+        width: 700px;
+        right: 0;
+        bottom: 0;
+        border-radius: variables.$gap--mid 0 0;
+        background-color: variables.$primary;
+        z-index: 0;
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -90%;
+            width: 100%;
+            height: 100%;
+            background-color: variables.$bg;
+            border-radius: variables.$gap--mid;
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: -90%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: variables.$bg;
+
+            border-radius: variables.$gap--mid;
+        }
+    }
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotation--outlined {
+    0% {
+        transform: translateY(-50%) translateX(-50%) rotate(0deg);
+    }
+    100% {
+        transform: translateY(-50%) translateX(-50%) rotate(360deg);
+    }
+}
+
+@keyframes floating {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-10px);
+    }
+}

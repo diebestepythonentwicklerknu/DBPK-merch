@@ -1,0 +1,45 @@
+@use '../../styles/variables.scss' as variables;
+
+.cart-page {
+    &__content {
+        display: flex;
+        gap: variables.$gap--large;
+        justify-content: space-between;
+
+        @media (max-width: 1090px) {
+            flex-direction: column;
+        }
+    }
+
+    &__order {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    &__grid {
+        display: grid;
+        flex: 1;
+        grid-template-columns: repeat(4, 1fr);
+
+        @media (max-width: 1820px) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @media (max-width: 1560px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (max-width: 1280px) {
+            grid-template-columns: repeat(1, 1fr);
+        }
+
+        gap: variables.$gap;
+        justify-items: center;
+        align-content: center;
+    }
+
+    .page__container {
+        gap: variables.$gap--large;
+    }
+}

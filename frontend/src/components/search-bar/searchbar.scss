@@ -1,11 +1,24 @@
 @use '../../styles/variables.scss' as variables;
 
 .search-bar {
-    border: none;
-    border-radius: variables.$gap--large;
-    max-width: 320px;
-    background-color: variables.$bg-secondary;
-    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: variables.$gap--small;
     color: variables.$primary;
-    padding: variables.$gap;
+    font-weight: variables.$subtitle-weight;
+    font-size: variables.$text-size;
+    width: 320px;
+
+    &__wrapper {
+        position: relative;
+    }
+
+    &__icon {
+        position: absolute;
+        width: 24px;
+        right: variables.$gap;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0.5;
+    }
 }

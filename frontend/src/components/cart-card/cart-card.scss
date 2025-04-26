@@ -1,0 +1,11 @@
+@use '../../styles/variables.scss' as variables;
+.card {
+    &__quantity-buttons {
+        display: flex;
+        gap: variables.$gap;
+
+        & > * {
+            flex: 1;
+        }
+    }
+}

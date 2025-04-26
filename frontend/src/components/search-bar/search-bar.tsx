@@ -1,11 +1,26 @@
-import './searchbar.scss';
+import './searchbar.scss'
 
 interface SearchBarProps {
-    onChange: (value: string) => void;
+    onChange: (value: string) => void
 }
 
 export const SearchBar: React.FC<SearchBarProps> = ({ onChange }) => {
     return (
-        <input type="text" className="search-bar" onChange={(event) => onChange(event.target.value)}/>
-    );
+        <label htmlFor="search" className="search-bar">
+            Search
+            <div className="search-bar__wrapper">
+                <img
+                    src="/icons/search.svg"
+                    alt="search icon"
+                    className="search-bar__icon"
+                />
+                <input
+                    name="search"
+                    type="text"
+                    className="search-bar__input"
+                    onChange={(event) => onChange(event.target.value)}
+                />
+            </div>
+        </label>
+    )
 }

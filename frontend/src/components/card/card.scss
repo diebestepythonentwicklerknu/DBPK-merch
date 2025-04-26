@@ -1,14 +1,25 @@
 @use '../../styles/variables.scss' as variables;
 
 .card {
-    background-color: variables.$bg-secondary;
+    background-color: variables.$bg--transparent;
     border-radius: variables.$gap;
-    min-width: 320px;
+    max-width: variables.$card-size-max;
     box-sizing: border-box;
     padding: variables.$gap;
     display: flex;
     flex-direction: column;
     gap: variables.$gap;
+    transition: variables.$animation;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+
+    &__title {
+        color: variables.$primary;
+        font-size: variables.$logo-size;
+        font-weight: variables.$logo-weight;
+    }
 
     &__image {
         max-width: 100%;

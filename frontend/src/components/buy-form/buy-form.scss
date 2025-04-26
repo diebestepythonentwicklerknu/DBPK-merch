@@ -1,0 +1,32 @@
+@use '../../styles/variables.scss' as variables;
+
+.form {
+    background-color: variables.$bg--transparent;
+    padding: variables.$gap--mid;
+    border-radius: variables.$gap--mid;
+    display: flex;
+    flex-direction: column;
+    gap: variables.$gap--mid;
+    border: 2px solid transparent;
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        gap: variables.$gap--small;
+    }
+
+    &__input {
+        &--error {
+            border: 2px solid variables.$warning;
+        }
+    }
+
+    .error-alert {
+        display: flex;
+        flex-direction: column;
+        padding: variables.$gap;
+        color: variables.$warning;
+        background-color: variables.$bg--warning;
+        border-radius: variables.$gap;
+    }
+}

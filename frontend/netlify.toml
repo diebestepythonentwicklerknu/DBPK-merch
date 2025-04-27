@@ -1,8 +1,8 @@
 [build]
   # Netlify will run 'npm run build' to build the React app
-  command = "npm --prefix frontend run build"
+  command = "npm run build"
   # The 'build' folder where the final built app is stored
-  publish = "frontend/build"
+  publish = "build"
 
 [[redirects]]
   # Redirect all routes to index.html for React Router (important for client-side routing)

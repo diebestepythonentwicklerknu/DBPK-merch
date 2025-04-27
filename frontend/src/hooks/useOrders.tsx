@@ -6,10 +6,12 @@ export const useOrders = () => {
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
-        getOrders().then((response) => {
-            setOrders(response)
-            setIsLoading(false)
-        })
+        getOrders()
+            .then((response) => {
+                setOrders(response)
+                setIsLoading(false)
+            })
+            .catch(() => setIsLoading(false))
     }, [])
 
     return {

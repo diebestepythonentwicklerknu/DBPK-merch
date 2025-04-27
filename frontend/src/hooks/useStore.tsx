@@ -10,10 +10,12 @@ export const useStore = () => {
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
-        getProducts().then((response) => {
-            setProducts(response)
-            setIsLoading(false)
-        })
+        getProducts()
+            .then((response) => {
+                setProducts(response)
+                setIsLoading(false)
+            })
+            .catch(() => setIsLoading(false))
     }, [])
 
     const filteredProducts = useMemo(() => {

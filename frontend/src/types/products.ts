@@ -18,3 +18,11 @@ export type UpdatedProduct = {
 export interface ProductCart extends Product {
     currentQuantity: number
 }
+
+export enum Sizes {
+    S = 'S',
+    M = 'M',
+    L = 'L',
+    XL = 'XL',
+    ALL = 'All',
+}

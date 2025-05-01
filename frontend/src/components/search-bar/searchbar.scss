@@ -1,0 +1,24 @@
+@use '../../styles/variables.scss' as variables;
+
+.search-bar {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$gap--small;
+    color: variables.$primary;
+    font-weight: variables.$subtitle-weight;
+    font-size: variables.$text-size;
+    width: 320px;
+
+    &__wrapper {
+        position: relative;
+    }
+
+    &__icon {
+        position: absolute;
+        width: 24px;
+        right: variables.$gap;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0.5;
+    }
+}

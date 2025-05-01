@@ -1,0 +1,17 @@
+@use '../../styles/variables.scss' as variables;
+
+.cart-counter {
+    width: 16px;
+    height: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: variables.$bg--accent;
+    border-radius: variables.$gap;
+
+    &__number {
+        color: variables.$accent;
+        font-weight: variables.$logo-weight;
+        font-size: variables.$code-size;
+    }
+}

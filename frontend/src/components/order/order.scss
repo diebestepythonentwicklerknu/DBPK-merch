@@ -1,0 +1,78 @@
+@use '../../styles/variables.scss' as variables;
+
+.order {
+    display: flex;
+    flex-direction: column;
+    background-color: variables.$bg--transparent;
+    border-radius: variables.$gap;
+    max-width: variables.$card-size-max;
+
+    transition: variables.$animation;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+
+    &__header {
+        display: flex;
+        gap: variables.$gap;
+        justify-content: space-between;
+        align-items: center;
+        background-color: variables.$bg-secondary;
+        padding: variables.$gap;
+        border-radius: variables.$gap variables.$gap 0 0;
+    }
+
+    &__id {
+        display: flex;
+        flex-direction: column;
+        color: variables.$primary;
+        font-size: variables.$text-size;
+        font-weight: variables.$subtitle-weight;
+        font-size: variables.$price-size;
+
+        .value {
+            color: variables.$secondary;
+            font-size: variables.$code-size;
+            font-weight: variables.$text-weight;
+        }
+    }
+
+    &__price {
+        color: variables.$primary;
+        font-size: variables.$price-size;
+        font-weight: variables.$button-weight;
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        gap: variables.$gap--small;
+        color: variables.$secondary;
+        padding: variables.$gap;
+
+        & > * {
+            display: flex;
+            justify-content: space-between;
+            gap: variables.$gap;
+        }
+
+        .value {
+            color: variables.$primary;
+        }
+    }
+
+    &__status {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: variables.$primary;
+        font-size: variables.$text-size;
+        font-weight: variables.$subtitle-weight;
+        text-transform: capitalize;
+        background-color: variables.$accent;
+        padding: variables.$gap--small variables.$gap;
+        border-radius: variables.$gap--large;
+        height: 24px;
+    }
+}

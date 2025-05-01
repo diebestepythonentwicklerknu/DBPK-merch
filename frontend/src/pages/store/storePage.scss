@@ -1,0 +1,51 @@
+@use '../../styles/variables.scss' as variables;
+
+.store-page {
+    flex: 1;
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        gap: variables.$gap--large;
+    }
+
+    &__catalog {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: variables.$gap;
+        justify-items: center;
+        align-content: center;
+
+        @media (max-width: 1820px) {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        @media (max-width: 1240px) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @media (max-width: 900px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        @media (max-width: 656px) {
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+
+    .filters {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: variables.$gap--mid;
+        width: 100%;
+
+        @media (max-width: 1300px) {
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    .page__container {
+        gap: variables.$gap--large;
+    }
+}

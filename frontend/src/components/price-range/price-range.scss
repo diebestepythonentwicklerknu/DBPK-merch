@@ -1,0 +1,19 @@
+@use '../../styles/variables.scss' as variables;
+.price-range {
+    font-family: 'Poppins', sans-serif;
+
+    &__label {
+        color: variables.$primary;
+        font-size: variables.$text-size;
+        font-weight: variables.$subtitle-weight;
+        margin-bottom: variables.$gap--small;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__current-value {
+        color: variables.$secondary;
+        font-size: variables.$text-size;
+        font-weight: variables.$text-weight;
+    }
+}

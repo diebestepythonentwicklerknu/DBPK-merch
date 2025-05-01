@@ -1,16 +1,31 @@
-import { useOrders } from "../../hooks/useOrders";
-import { renderOrderCards } from "../store/service/products";
+import { Loader } from '@chakra-ui/react'
+import { useOrders } from '../../hooks/useOrders'
+import { renderOrderCards } from '../store/service/products'
+import './ordersPage.scss'
 
 export const OrdersPage = () => {
-  const { orders } = useOrders();
+    const { orders, isLoading } = useOrders()
 
-  return (
-    <div>
-      <h1>Orders Page</h1>
-      <p>This is the orders page.</p>
-      <div className="order__grid">
-        {renderOrderCards(orders)}
-      </div>
-    </div>
-  );
-};
+    return isLoading ? (
+        <Loader />
+    ) : (
+        <div className="order-page page">
+            <div className="page__container">
+                <div className="order-page__banner banner">
+                    <img
+                        src="/icons/dbpk.svg"
+                        alt="cat"
+                        className="banner__logo"
+                    />
+                    <h1 className="banner__headline">Your Orders</h1>
+                    <p className="banner__text">
+                        The list of your recent orders
+                    </p>
+                </div>
+                <div className="order-page__grid">
+                    {renderOrderCards(orders)}
+                </div>
+            </div>
+        </div>
+    )
+}

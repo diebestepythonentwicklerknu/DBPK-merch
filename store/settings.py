@@ -2,8 +2,6 @@ from pathlib import Path
 from decouple import config, Csv
 from pymongo import MongoClient
 
-from decouple import config, Csv
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -66,14 +64,8 @@ MONGO_URI = config('MONGO_URI', default='mongodb+srv://sinchuk_taras:sinchuk_pas
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.dummy'
-    },
-    'mongodb': {
-        'ENGINE': 'djongo',
-        'NAME': 'merch_shop',
-        'CLIENT': {
-            'host': MONGO_URI,
-        }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 

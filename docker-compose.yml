@@ -1,5 +1,3 @@
-# basic docker-compose file, should be updated when project will be done
-
 version: '3.8'
 
 services:
@@ -13,9 +11,6 @@ services:
       - media_volume:/app/media
     ports:
       - "8000:8000"
-    depends_on:
-      mongo:
-        condition: service_healthy
     env_file:
       - .env
     environment:
@@ -30,20 +25,5 @@ services:
       retries: 3
       start_period: 40s
 
-
-  mongo:
-    image: mongo:latest
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongo-data:/data/db
-    healthcheck:
-      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
-      interval: 10s
-      timeout: 10s
-      retries: 5
-      start_period: 40s
-
 volumes:
-  mongo-data:
   media_volume:

@@ -1,0 +1,83 @@
+@use '../../styles/variables.scss' as variables;
+
+.header {
+    width: 100%;
+    padding: variables.$gap variables.$gap--large;
+    position: sticky;
+    top: 0;
+    background-color: variables.$bg;
+    box-sizing: border-box;
+    z-index: 9999;
+
+    &__tab {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: -1px;
+        background-color: variables.$primary;
+        border-radius: 0 0 variables.$gap--large variables.$gap--large;
+        width: 300px;
+        height: 30px;
+        z-index: 99;
+    }
+
+    &__nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+.nav {
+    &__list {
+        margin: 0;
+        display: flex;
+        gap: variables.$gap--large;
+    }
+
+    &__link {
+        display: flex;
+        align-items: center;
+        gap: variables.$gap--small;
+        position: relative;
+        color: variables.$secondary;
+        font-size: variables.$text-size;
+        text-decoration: none;
+        transition: variables.$animation;
+
+        &--active {
+            &::before {
+                content: '';
+                position: absolute;
+                top: -130%;
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: variables.$primary;
+                border-radius: 0 0 variables.$gap--large variables.$gap--large;
+                width: 60px;
+                height: 10px;
+                animation: active_link 0.2s ease-in-out 1 forwards;
+            }
+        }
+
+        &:hover {
+            color: variables.$primary;
+        }
+    }
+}
+
+.logo {
+    font-size: variables.$logo-size;
+    font-weight: variables.$logo-weight;
+    color: variables.$primary;
+    text-decoration: none;
+}
+
+@keyframes active_link {
+    0% {
+        transform: translateX(-50%) scaleX(0);
+    }
+    100% {
+        transform: translateX(-50%) scaleX(1);
+    }
+}

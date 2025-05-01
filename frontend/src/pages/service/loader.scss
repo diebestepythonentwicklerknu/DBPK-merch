@@ -1,0 +1,14 @@
+@use '../../styles/variables.scss' as variables;
+
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: variables.$bg;
+    min-width: 100vw;
+    min-height: 100vh;
+}

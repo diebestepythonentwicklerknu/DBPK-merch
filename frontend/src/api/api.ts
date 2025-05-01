@@ -1,2 +1,4 @@
-export const PRODUCTS = 'http://localhost:8000/api/items/';
-export const ORDERS = 'http://localhost:8000/api/orders/';
+const API_LINK = import.meta.env.VITE_API_LINK
+
+export const PRODUCTS = `${API_LINK}/api/items/`
+export const ORDERS = `${API_LINK}/api/orders/`
